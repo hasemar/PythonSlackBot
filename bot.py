@@ -19,11 +19,12 @@ class Bot(object):
 		if api_call.get('ok'):
 			# retrieve all users so we can find our bot
 			users = api_call.get('members')
+			user_id = None
 			for user in users:
 				if 'name' in user and user.get('name') == self.bot_name:
-					return "<@" + user.get('id') + ">"
+					user_id =  "<@" + user.get('id') + ">"
 			
-			return None
+		return user_id
 			
 	def listen(self):
 		if self.slack_client.rtm_connect(with_team_state=False):
