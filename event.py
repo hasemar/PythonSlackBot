@@ -14,7 +14,7 @@ class Event:
 				self.parse_event(event)
 				
 	def parse_event(self, event):
-		if event and event['type'] == 'message' and self.bot.bot_id in event['text'] and event['user'] not in self.bot.bot_id:
+		if event and 'text' in event and self.bot.bot_id in event['text'] and event['user'] not in self.bot.bot_id:
 			self.handle_event(event['user'], event['text'].split(self.bot.bot_id)[1].strip().lower(), event['channel'])
 	
 	def handle_event(self, user, command, channel):
